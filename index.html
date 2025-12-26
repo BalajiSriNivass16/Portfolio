@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Balaji Sri Nivass.P – Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --bg: #7F00FF;
+      --section-bg: #050505;
+      --text: #f5f5f5;
+      --muted: #b3b3b3;
+      --neon: #FF70C5;
+      --border-soft: #1a1a1a;
+    }
+
+    @font-face {
+      font-family: "Appied";
+      src: url("assets/Appied.otf") format("opentype");
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+    body {
+      font-family: "Appied", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-shadow: 0 0 8px var(--neon); }
+
+    /* NAVBAR */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(0,0,0,0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .nav-container {
+      max-width: 1100px; margin: auto;
+      padding: 0.8rem 1rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .logo-wrap { display: flex; align-items: center; gap: 0.5rem; }
+
+    .logo-circle {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      border: 2px solid var(--neon);
+      box-shadow: 0 0 12px var(--neon);
+      background: #000 url("assets/logo.png") center/cover no-repeat;
+    }
+
+    .logo-text { font-size: 1rem; letter-spacing: 0.2em; text-transform: uppercase; }
+
+    .nav-links {
+      display: flex; gap: 1rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a { position: relative; color: var(--muted); padding-bottom: 0.15rem; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a::after {
+      content: ""; position: absolute; left: 0; bottom: 0;
+      height: 2px; width: 0%;
+      background: var(--neon); transition: 0.25s; box-shadow: 0 0 8px var(--neon);
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* MAIN WRAPPER */
+    .main-wrap { max-width: 1100px; margin: auto; padding: 2rem 1rem 4rem; }
+
+    /* HERO SECTION */
+    .hero {
+      min-height: calc(100vh - 80px);
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    @media(max-width: 900px){
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .hero-summary { margin-left: auto; margin-right: auto; }
+      .btn-neon { margin-left: auto; margin-right: auto; }
+    }
+
+    .hero-tag { font-size: 1.1rem; color: var(--muted); margin-bottom: 0.4rem; }
+    .hero-tag span { color: var(--neon); }
+    .hero-name { font-size: 2.6rem; letter-spacing: 0.24em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .hero-sub { color: var(--muted); margin-bottom: 0.7rem; }
+    .hero-summary { max-width: 30rem; line-height: 1.6; margin-bottom: 1.2rem; }
+
+    .btn-neon {
+      display: inline-block;
+      padding: 0.6rem 1.5rem;
+      border-radius: 50px; border: 1px solid var(--neon);
+      text-transform: uppercase; letter-spacing: 0.12em;
+      font-size: 0.8rem; background: transparent;
+      box-shadow: 0 0 14px rgba(255,112,197,0.7);
+      cursor: pointer;
+    }
+    .btn-neon:hover { box-shadow: 0 0 20px var(--neon); }
+
+    /* ORBIT ICONS */
+    .hero-image-wrap { display: flex; justify-content: center; }
+    .hero-orbit-wrap { position: relative; width: 280px; height: 280px; }
+
+    .hero-image-circle {
+      position: absolute; left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      border: 2px solid var(--neon);
+      overflow: hidden; background: #000;
+      box-shadow: 0 0 20px var(--neon);
+    }
+
+    .hero-image-circle img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    .orbit-ring {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 240px;
+      height: 240px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      animation: spin 14s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .orbit-item {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 65px; height: 65px;
+      background: #fff;
+      border-radius: 50%;
+      border: 2px solid var(--neon);
+      display: flex; justify-content: center; align-items: center;
+      box-shadow: 0 0 12px var(--neon);
+      transform-origin: center;
+    }
+
+    .orbit-item img { width: 70%; height: 70%; object-fit: contain; }
+
+    /* ⬇ Equal spacing: 3 icons at 0°, 120°, 240° around circle */
+    .orbit-linkedin {
+      transform: translate(-50%, -50%) rotate(0deg) translate(115px) rotate(0deg);
+    }
+
+    .orbit-github {
+      transform: translate(-50%, -50%) rotate(120deg) translate(115px) rotate(-120deg);
+    }
+
+    .orbit-email {
+      transform: translate(-50%, -50%) rotate(240deg) translate(115px) rotate(-240deg);
+    }
+
+    .orbit-item:hover {
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    /* ABOUT */
+    .section-heading {
+      font-size: 1rem; margin-bottom: 1rem; margin-top: 2rem;
+      text-transform: uppercase; letter-spacing: 0.24em;
+      border-bottom: 2px solid var(--neon); width: fit-content;
+      color: var(--muted); text-shadow: 0 0 6px var(--neon);
+    }
+
+    .about-card {
+      background: var(--section-bg);
+      padding: 1.3rem;
+      border-radius: 1rem;
+      border: 1px solid var(--border-soft);
+      line-height: 1.7;
+    }
+
+    footer {
+      text-align: center; padding: 1rem; color: var(--muted);
+      border-top: 1px solid var(--border-soft);
+    }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo-wrap">
+        <div class="logo-circle"></div>
+        <div class="logo-text">BALAJI SRI NIVASS.P</div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="#about">About</a>
+        <a href="skills.html">Skills</a>
+        <a href="contact.html">Contact</a>
+        <a href="education.html">Education</a>
+        <a href="projects.html">Projects</a>
+        <a href="experience.html">Experience</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrap">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="hero-tag">Hello, <span>This is</span></div>
+
+        <h1 class="hero-name">BALAJI SRI NIVASS.P</h1>
+
+        <div class="hero-sub">Emerging Software Engineer & AI Enthusiast</div>
+
+        <p class="hero-summary">
+          Aspiring Software Engineer and AI enthusiast currently pursuing B.Tech CSE.
+          Passionate about building scalable systems and modern full-stack applications.
+        </p>
+
+        <!-- Button clearly below the text -->
+        <a class="btn-neon" href="assets/Resume.pdf" target="_blank" style="background:white; color:black;">View Resume</a>
+        <a class="btn-neon" href="https://drive.google.com/drive/folders/1p54E9rtNV9NmFRLoaCJol7RU7ObjgKpX" target="_blank" style="background:white; color:black;">View Certificates</a>
+      </div>
+
+      <!-- ORBIT -->
+      <div class="hero-image-wrap">
+        <div class="hero-orbit-wrap">
+
+          <div class="hero-image-circle">
+            <img src="assets/profile.jpeg" alt="Balaji">
+          </div>
+
+          <div class="orbit-ring">
+            <a class="orbit-item orbit-linkedin" href="https://www.linkedin.com/in/balaji-sri-nivass-71098321a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
+              <img src="assets/linkedin.jpeg" alt="LinkedIn">
+            </a>
+            <a class="orbit-item orbit-github" href="https://github.com/BalajiSriNivass16" target="_blank">
+              <img src="assets/github.jpeg" alt="GitHub">
+            </a>
+            <a class="orbit-item orbit-email"
+   href="https://mail.google.com/mail/?view=cm&fs=1&to=balajiyoga160706@gmail.com"
+   target="_blank"
+   aria-label="Send Email">
+   
+   <img src="assets/email.jpeg" alt="Email">
+</a>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION AT END OF PAGE -->
+    <section id="about">
+      <h2 class="section-heading">About Me</h2>
+      <div class="about-card">
+        I’m Balaji Sri Nivass – a B.Tech CSE student passionate about AI, full stack development and
+         I enjoy solving problems and building real-world digital products.
+      </div>
+    </section>
+
+  </main>
+
+  <footer>Developed by <span style="color:var(--neon);">BALAJI SRI NIVASS.P</span></footer>
+</body>
+</html>

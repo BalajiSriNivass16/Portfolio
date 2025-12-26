@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Projects – Balaji Sri Nivass.P</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --bg: #7F00FF;
+      --section-bg: #050505;
+      --text: #f5f5f5;
+      --muted: #b3b3b3;
+      --neon: #FF70C5;
+      --border-soft: #1a1a1a;
+    }
+
+    @font-face {
+      font-family: "Appied";
+      src: url("assets/Appied.otf") format("opentype");
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: "Appied", sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-shadow: 0 0 8px var(--neon);
+    }
+
+    /* NAVBAR */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0.8rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-circle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid var(--neon);
+      background: #000 url("assets/logo.png") center/cover no-repeat;
+      box-shadow: 0 0 12px var(--neon);
+    }
+
+    .logo-text {
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      position: relative;
+      padding-bottom: 0.15rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--neon);
+      transition: 0.25s;
+      box-shadow: 0 0 8px var(--neon);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* MAIN WRAPPER */
+    .main-wrap {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem 1rem 4rem;
+    }
+
+    /* PAGE HEADER */
+    .section-heading {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      border-bottom: 2px solid var(--neon);
+      width: fit-content;
+      color: var(--muted);
+      text-shadow: 0 0 6px var(--neon);
+    }
+
+    /* ⭐ NEW: Title + GLB Model Row */
+    .projects-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .projects-model {
+      width: 260px;
+      height: 220px;
+      background: var(--bg);
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+
+    /* PROJECT CARDS */
+    .project-card {
+      background: var(--section-bg);
+      border: 1px solid var(--border-soft);
+      padding: 1.4rem;
+      border-radius: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1.6rem;
+      box-shadow: 0 0 14px rgba(255, 112, 197, 0.18);
+      transition: 0.3s;
+    }
+
+    .project-card:hover {
+      border-color: var(--neon);
+      box-shadow: 0 0 18px var(--neon);
+    }
+
+    .project-title {
+      font-size: 1.1rem;
+      color: var(--neon);
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 8px var(--neon);
+    }
+
+    .project-status {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border-soft);
+    }
+
+    @media (max-width: 768px) {
+      .projects-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .projects-model {
+        width: 100%;
+        height: 260px;
+      }
+    }
+  </style>
+
+  <!-- ⭐ 3D Model Viewer -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+</head>
+
+<body>
+
+  <header>
+    <div class="nav-container">
+      <div class="logo-wrap">
+        <div class="logo-circle"></div>
+        <div class="logo-text">BALAJI SRI NIVASS.P</div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="skills.html">Skills</a>
+        <a href="contact.html">Contact</a>
+        <a href="education.html">Education</a>
+        <a href="projects.html" style="color: var(--text);">Projects</a>
+        <a href="experience.html">Experience</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrap">
+
+    <!-- ⭐ Title + 3D Model -->
+    <div class="projects-header">
+      <h2 class="section-heading">My Projects</h2>
+
+      <model-viewer class="projects-model"
+        src="assets/projects.glb"
+        alt="Projects 3D model"
+        auto-rotate
+        rotation-per-second="80deg"
+        camera-controls
+        disable-zoom>
+      </model-viewer>
+    </div>
+
+    <!-- Project 1 -->
+    <div class="project-card">
+      <h3 class="project-title">Face Recognition Attendance System</h3>
+      <div class="project-status">[ IN PROGRESS ]</div>
+      <p class="project-desc">
+        Implemented a real-time attendance system using OpenCV and face-embedding matching with LBPH/FaceNet
+        for high-accuracy identification. Automated time-logging and optimized detection speed by 25% through
+        frame sampling and vector caching.
+      </p>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card">
+      <h3 class="project-title">C I P-LMP (Client-Side ID–Password: Link Mapping Protocol)</h3>
+      <div class="project-status">[ IN PROGRESS ]</div>
+      <p class="project-desc">
+        Designed a secure ID–password mapping engine with encrypted credential routing and instant user validation.
+        Implemented hash-based lookup tables to reduce authentication latency by 40% and enable consistent
+        cross-module credential access.
+      </p>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card">
+      <h3 class="project-title">College Query Chatbot AI</h3>
+      <div class="project-status">[ IN PROGRESS ]</div>
+      <p class="project-desc">
+        Developed an NLP-driven chatbot using intent classification and semantic search to answer
+        college-related queries. Integrated a lightweight retrieval pipeline that reduced response time
+        by 35% while supporting 50+ dynamic query categories.
+      </p>
+    </div>
+
+  </main>
+
+  <footer>
+    Developed by <span style="color:var(--neon);">BALAJI SRI NIVASS.P</span>
+  </footer>
+
+</body>
+
+</html>
