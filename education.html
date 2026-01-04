@@ -6,7 +6,6 @@
   <title>Education – Balaji Sri Nivass.P</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- FIXED FONT AWESOME (WORKING ICONS) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
@@ -168,7 +167,7 @@
     .timeline-content span { font-size: 0.9rem; color: var(--muted); }
     .timeline-content p { font-size: 0.95rem; margin-top: .4rem; line-height: 1.6; }
 
-    /* 3D MODEL AT BOTTOM */
+    
     .edu-model-bottom {
       width: 280px;
       height: 240px;
@@ -186,10 +185,112 @@
     }
   </style>
 
-  <!-- 3D MODEL VIEWER -->
+
+<div class="cursor-ring"></div>
+
+
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+
+<style>
+  .circle {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 999999;
+  }
+
+
+  .cursor-ring {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 999998;
+    border: 2px solid black;
+    transform: translate(-50%, -50%);
+  }
+</style>
+
+<script>
+  const coords = { x: 0, y: 0 };
+  const circles = document.querySelectorAll(".circle");
+  const ring = document.querySelector(".cursor-ring");
+
+  let ringX = 0;
+  let ringY = 0;
+
+  circles.forEach(circle => {
+    circle.x = 0;
+    circle.y = 0;
+  });
+
+  window.addEventListener("mousemove", e => {
+    coords.x = e.clientX;
+    coords.y = e.clientY;
+  });
+
+  function animateCircles() {
+    let x = coords.x;
+    let y = coords.y;
+
+    
+    ringX += (coords.x - ringX) * 0.11;
+    ringY += (coords.y - ringY) * 0.11;
+    ring.style.left = ringX + "px";
+    ring.style.top = ringY + "px";
+
+    circles.forEach((circle, index) => {
+      circle.style.left = x - 12 + "px";
+      circle.style.top = y - 12 + "px";
+
+      circle.style.scale = (circles.length - index) / circles.length;
+
+      circle.x = x;
+      circle.y = y;
+
+      const nextCircle = circles[index + 1] || circles[0];
+      x += (nextCircle.x - x) * 0.3;
+      y += (nextCircle.y - y) * 0.3;
+    });
+
+    requestAnimationFrame(animateCircles);
+  }
+
+  animateCircles();
+</script>
+
+
   <script type="module"
     src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
   </script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 
@@ -220,7 +321,6 @@
 
   <div class="timeline">
 
-    <!-- COLLEGE FLAG ICON -->
     <div class="timeline-item left">
       <div class="timeline-icon">
         <i class="fa-solid fa-flag-checkered"></i>
@@ -233,7 +333,7 @@
       </div>
     </div>
 
-    <!-- SCHOOL FLAG (INDIA) -->
+    
     <div class="timeline-item right">
       <div class="timeline-icon">
         <i class="fa-solid fa-flag"></i>
@@ -247,7 +347,6 @@
       </div>
     </div>
 
-    <!-- SSLC FLAG ICON -->
     <div class="timeline-item left">
       <div class="timeline-icon">
         <i class="fa-solid fa-flag"></i>
@@ -262,16 +361,8 @@
 
   </div>
 
-  <!-- 3D MODEL AT BOTTOM -->
-  <model-viewer class="edu-model-bottom"
-    src="assets/education.glb"
-    alt="Education 3D model"
-    auto-rotate
-    rotation-per-second="80deg"
-    camera-controls
-    disable-zoom>
-  </model-viewer>
-
+ 
+  
 </main>
 
 <footer>
