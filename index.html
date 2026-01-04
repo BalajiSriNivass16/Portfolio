@@ -198,8 +198,10 @@
 
   </style>
  
+<!-- Cursor Ring -->
 <div class="cursor-ring"></div>
 
+<!-- Cursor Trail -->
 <div class="circle"></div>
 <div class="circle"></div>
 <div class="circle"></div>
@@ -222,6 +224,14 @@
 <div class="circle"></div>
 
 <style>
+  /* Disable cursor on mobile / touch */
+  @media (pointer: coarse) {
+    .circle,
+    .cursor-ring {
+      display: none;
+    }
+  }
+
   .circle {
     height: 24px;
     width: 24px;
@@ -233,7 +243,6 @@
     pointer-events: none;
     z-index: 999999;
   }
-
 
   .cursor-ring {
     width: 60px;
@@ -250,53 +259,54 @@
 </style>
 
 <script>
-  const coords = { x: 0, y: 0 };
-  const circles = document.querySelectorAll(".circle");
-  const ring = document.querySelector(".cursor-ring");
+  /* Run cursor ONLY on PC / mouse devices */
+  if (window.matchMedia("(pointer: fine)").matches) {
 
-  let ringX = 0;
-  let ringY = 0;
+    const coords = { x: 0, y: 0 };
+    const circles = document.querySelectorAll(".circle");
+    const ring = document.querySelector(".cursor-ring");
 
-  circles.forEach(circle => {
-    circle.x = 0;
-    circle.y = 0;
-  });
+    let ringX = 0;
+    let ringY = 0;
 
-  window.addEventListener("mousemove", e => {
-    coords.x = e.clientX;
-    coords.y = e.clientY;
-  });
-
-  function animateCircles() {
-    let x = coords.x;
-    let y = coords.y;
-
-   
-    ringX += (coords.x - ringX) * 0.11;
-    ringY += (coords.y - ringY) * 0.11;
-    ring.style.left = ringX + "px";
-    ring.style.top = ringY + "px";
-
-    circles.forEach((circle, index) => {
-      circle.style.left = x - 12 + "px";
-      circle.style.top = y - 12 + "px";
-
-      circle.style.scale = (circles.length - index) / circles.length;
-
-      circle.x = x;
-      circle.y = y;
-
-      const nextCircle = circles[index + 1] || circles[0];
-      x += (nextCircle.x - x) * 0.3;
-      y += (nextCircle.y - y) * 0.3;
+    circles.forEach(circle => {
+      circle.x = 0;
+      circle.y = 0;
     });
 
-    requestAnimationFrame(animateCircles);
-  }
+    window.addEventListener("mousemove", e => {
+      coords.x = e.clientX;
+      coords.y = e.clientY;
+    });
 
-  animateCircles();
+    function animateCircles() {
+      let x = coords.x;
+      let y = coords.y;
+
+      ringX += (coords.x - ringX) * 0.11;
+      ringY += (coords.y - ringY) * 0.11;
+      ring.style.left = ringX + "px";
+      ring.style.top = ringY + "px";
+
+      circles.forEach((circle, index) => {
+        circle.style.left = x - 12 + "px";
+        circle.style.top = y - 12 + "px";
+        circle.style.scale = (circles.length - index) / circles.length;
+
+        circle.x = x;
+        circle.y = y;
+
+        const nextCircle = circles[index + 1] || circles[0];
+        x += (nextCircle.x - x) * 0.3;
+        y += (nextCircle.y - y) * 0.3;
+      });
+
+      requestAnimationFrame(animateCircles);
+    }
+
+    animateCircles();
+  }
 </script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
 </head>
